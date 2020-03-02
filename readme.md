@@ -76,7 +76,7 @@ class Playground {
     delta: number;
     time: number;
 
-    resize(width?: number, height?: number): void;
+    resize(width: number, height: number): void;
     reset(): void;
     play(): void;
     pause(): void;
