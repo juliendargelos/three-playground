@@ -63,22 +63,21 @@ Each of `initialize`, `update` and `resize` hooks are binded to a `Playground` i
 
 ```typescript
 class Playground {
-    readonly renderer: WebGLRenderer;
-    readonly controls: OrbitControls;
-    readonly camera: Camera;
-    readonly scene: Scene;
-    readonly ambientLight: AmbientLight;
-    readonly pointLight: PointLight;
-    readonly onupdate: PlaygroundHook;
-    readonly onresize: PlaygroundHook;
-    playing: boolean;
-    elapsed: number;
-    delta: number;
-    time: number;
+    readonly renderer: WebGLRenderer
+    readonly controls: OrbitControls
+    readonly camera: Camera
+    readonly scene: Scene
+    readonly ambientLight: AmbientLight
+    readonly pointLight: PointLight
+    
+    playing: boolean // Equals true when the playground is play
+    elapsed: number // Elapsed time since initialization or last reset() call
+    delta: number // Delta time from last loop iteration
+    time: number // Time returned by last Date.now() call
 
-    resize(width: number, height: number): void;
-    reset(): void;
-    play(): void;
-    pause(): void;
+    resize(width: number, height: number): void // Resize the renderer and set camera aspect (if perspective camera)
+    reset(): void // Reset elapsed time to 0
+    play(): void // Start playing
+    pause(): void // Stop playing
 }
 ```
