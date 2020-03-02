@@ -69,7 +69,7 @@ export class Playground {
   }: PlaygroundParameters = {}) {
     this.renderer = renderer
     this.camera = camera
-    this.camera.position.set(0, 2, -4)
+    this.camera.position.set(0, 2, 4)
 
     this.controls = new OrbitControls(camera, renderer.domElement)
     this.controls.enabled = controls
@@ -82,7 +82,7 @@ export class Playground {
 
     ambientLight && this.scene.add(this.ambientLight)
     pointLight && this.scene.add(this.pointLight)
-    this.pointLight.position.set(2, 2, -4)
+    this.pointLight.position.set(2, 2, 4)
 
     initialize && initialize.call(this, this)
     container && container.appendChild(renderer.domElement)
