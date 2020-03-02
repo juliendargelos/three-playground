@@ -75,7 +75,6 @@ class Playground {
     elapsed: number;
     delta: number;
     time: number;
-    constructor(parameters: PlaygroundParameters);
 
     resize(width?: number, height?: number): void;
     reset(): void;
