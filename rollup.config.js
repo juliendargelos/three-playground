@@ -53,11 +53,15 @@ export default [
       ...config.output,
       file: pkg.browser,
       format: 'umd',
-      name: pkg.name
-        .split(/[^a-z0-9]+/i)
-        .map(part => part && part[0].toUpperCase() + part.slice(1))
-        .join('')
+      name: 'THREE',
+      globals: {
+        'three': 'THREE',
+        'three/examples/jsm/controls/OrbitControls': 'THREE'
+      }
     },
+    externals: [
+      'three/examples/jsm/controls/OrbitControls'
+    ],
     plugins: [
       ...config.plugins,
       ts({
@@ -66,7 +70,7 @@ export default [
       }),
       nodeResolve({ extensions: ['.ts', '.js'] }),
       commonjs(),
-      terser()
+      // terser()
     ]
   },
 
