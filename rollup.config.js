@@ -41,8 +41,8 @@ export default [
     ],
     plugins: [
       ...config.plugins,
-      ts(),
       eslint(),
+      ts(),
       cleaner({ targets: [pkg.main.replace(/\/[^\/]+$/, '')] }),
     ]
   },
