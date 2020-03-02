@@ -70,7 +70,7 @@ class Playground {
     readonly ambientLight: AmbientLight
     readonly pointLight: PointLight
     
-    playing: boolean // Equals true when the playground is play
+    playing: boolean // Equals true when the playground is playing
     elapsed: number // Elapsed time since initialization or last reset() call
     delta: number // Delta time from last loop iteration
     time: number // Time returned by last Date.now() call
