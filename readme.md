@@ -6,7 +6,7 @@
 
 *Three helper for quick prototyping*
 
-[Demo](https://julienddargelos.com/three-playground) ([Source code](https://github.com/juliendargelos/three-playground/blob/master/demo/index.ts))
+[Demo](https://juliendargelos.com/three-playground) ([Source code](https://github.com/juliendargelos/three-playground/blob/master/demo/index.ts))
 
 ### Install
 
