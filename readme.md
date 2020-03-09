@@ -35,17 +35,17 @@ import { Playground } from 'three-playground'
 Playground.play({
   // All options are optional, these are the default values
 
-  controls = true, // Enable orbit controls
-  ambientLight = true, // Add ambient light to the scene
-  pointLight = true, // Add point light to the scene
-  play = true, // Start the render loop at initialization
-  width = 1024, // Width of the canvas (ignored if autosize or fullscreen are se to true)
-  height = 512, // Height of the canvas (ignored if autosize or fullscreen are se to true)
-  autosize = true, // Autosize the canvas to fill the container on window resize (ignored if fullscreen is set to true)
-  fullscreen = true, // Autosize the canvas to fill the screen on window resize
-  container = document.body, // Element where the canvas is appended
-  renderer = new WebGLRenderer({ antialias: true }), // Renderer to use
-  camera = new PerspectiveCamera(), // Camera to use
+  controls: true, // Enable orbit controls
+  ambientLight: true, // Add ambient light to the scene
+  pointLight: true, // Add point light to the scene
+  play: true, // Start the render loop at initialization
+  width: 1024, // Width of the canvas (ignored if autosize or fullscreen are se to true)
+  height: 512, // Height of the canvas (ignored if autosize or fullscreen are se to true)
+  autosize: true, // Autosize the canvas to fill the container on window resize (ignored if fullscreen is set to true)
+  fullscreen: true, // Autosize the canvas to fill the screen on window resize
+  container: document.body, // Element where the canvas is appended
+  renderer: new WebGLRenderer({ antialias: true }), // Renderer to use
+  camera: new PerspectiveCamera(), // Camera to use
 
   initialize() {
     // Initialize and add objects to scene
