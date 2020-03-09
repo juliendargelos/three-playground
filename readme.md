@@ -33,7 +33,7 @@ npm install three three-playground --save
 import { Playground } from 'three-playground'
 
 Playground.play({
-  // All options are optional, these are the default values
+  // All parameters are optional, these are the default values
 
   controls: true, // Enable orbit controls
   ambientLight: true, // Add ambient light to the scene
