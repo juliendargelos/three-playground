@@ -23,8 +23,6 @@
   "dependencies": {
     "@types/dat.gui": "^0.7.5",
     "@types/stats.js": "^0.17.0",
-    "@types/postprocessing": "./@types/postprocessing",
-    "@types/three-dat.gui": "./@types/three-dat.gui",
     "camera-controls": "^1.22.1",
     "dat.gui": "^0.7.7",
     "postprocessing": "^6.16.0",
