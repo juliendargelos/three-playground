@@ -43,7 +43,7 @@ import { Playground } from 'three-playground'
 Playground.play({
   async initialize () {
     this.model = (await this.loadGLTF('model.gltf')).scene
-    this.gui.addObject3D ('model', this.model)
+    this.gui.addObject3D('model', this.model)
     this.scene.add(this.model)
   },
 
