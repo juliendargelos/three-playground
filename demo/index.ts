@@ -6,26 +6,26 @@ import {
   IcosahedronBufferGeometry,
   CircleBufferGeometry,
   MeshStandardMaterial,
-  TextureLoader,
-  Color,
   Vector3,
   RepeatWrapping
 } from 'three'
 
 import { Water } from 'three/examples/jsm/objects/Water'
+import { EffectPass, BloomEffect, KernelSize } from 'postprocessing'
 import { Playground } from '~/index'
 
 Playground.play({
+  background: 0xfaace0,
   pointLight: false,
 
-  initialize() {
-    this.scene.background = new Color(0x090909)
-    this.scene.fog = new Fog(0x090909, 10, 22)
-    this.camera.position.y = 1
-    this.camera.position.z = 7
+  async initialize() {
+    this.scene.fog = new Fog(0xfaace0, 10, 22)
+    this.controls.minDistance = 2
+    this.controls.maxDistance = 10
+    this.controls.maxPolarAngle = Math.PI / 2
 
-    this.redLight = new PointLight(0xff0066, 3)
-    this.blueLight = new PointLight(0x4400ff, 3)
+    this.redLight = new PointLight(0xff0066, 4)
+    this.blueLight = new PointLight(0x4400ff, 4)
 
     this.torusKnot = new Mesh(
       new TorusKnotBufferGeometry(0.5, 0.2, 256, 64),
@@ -38,31 +38,38 @@ Playground.play({
     )
 
     this.redSphere = new Mesh(
-      new IcosahedronBufferGeometry(0.06),
-      new MeshStandardMaterial({ color: this.blueLight.color, metalness: 0.95, roughness: 1 })
+      new IcosahedronBufferGeometry(0.04),
+      new MeshStandardMaterial({
+        color: this.redLight.color,
+        metalness: 0,
+        roughness: 0
+      })
     )
 
     this.blueSphere = new Mesh(
-      new IcosahedronBufferGeometry(0.06),
-      new MeshStandardMaterial({ color: this.redLight.color, metalness: 0.95, roughness: 1 })
+      new IcosahedronBufferGeometry(0.04),
+      new MeshStandardMaterial({
+        color: this.blueLight.color,
+        metalness: 0,
+        roughness: 0
+      })
     )
+
+    const waterNormals = await this.loadTexture('https://raw.githubusercontent.com/mrdoob/three.js/b1653ec7628008e4b4be87526b3e670cd7e3b2ea/examples/textures/waternormals.jpg')
+    waterNormals.wrapS = waterNormals.wrapT = RepeatWrapping
 
     this.water = new Water(new CircleBufferGeometry(22), {
       textureWidth: 1024,
       textureHeight: 1024,
-      distortionScale: 2,
-      waterColor: 0x000000,
-      sunColor: 0xffffff,
+      distortionScale: 0.5,
+      waterColor: 0x9b,
+      sunColor: 0xd284ff,
       sunDirection: new Vector3(0, 0, -1),
       fog: true,
-      waterNormals: new TextureLoader().load(
-        'https://raw.githubusercontent.com/mrdoob/three.js/b1653ec7628008e4b4be87526b3e670cd7e3b2ea/examples/textures/waternormals.jpg',
-        (texture) => { texture.wrapS = texture.wrapT = RepeatWrapping }
-      )
+      waterNormals
     })
 
     this.water.material.uniforms.size.value = 3
-
     this.water.position.y = -1.2
     this.water.rotation.x = -Math.PI / 2
 
@@ -74,6 +81,13 @@ Playground.play({
       this.blueSphere,
       this.water
     )
+
+    this.composer.addPass(new EffectPass(this.camera,
+      new BloomEffect({
+        luminanceThreshold: 0,
+        kernelSize: KernelSize.VERY_LARGE
+      })
+    ))
   },
 
   update({ elapsed }) {
@@ -106,6 +120,6 @@ Playground.play({
     this.redSphere.position.copy(this.redLight.position)
     this.blueSphere.position.copy(this.blueLight.position)
 
-    this.water.material.uniforms.time.value = elapsed / 6000
+    this.water.material.uniforms.time.value = elapsed / 4000
   }
 })

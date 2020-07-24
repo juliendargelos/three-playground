@@ -12,15 +12,27 @@
   "browser": "dist/index.umd.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "@types"
   ],
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -cw",
     "test": "jest --passWithNoTests"
   },
+  "dependencies": {
+    "@types/dat.gui": "^0.7.5",
+    "@types/stats.js": "^0.17.0",
+    "@types/postprocessing": "./@types/postprocessing",
+    "@types/three-dat.gui": "./@types/three-dat.gui",
+    "camera-controls": "^1.22.1",
+    "dat.gui": "^0.7.7",
+    "postprocessing": "^6.16.0",
+    "stats.js": "^0.17.0",
+    "three-dat.gui": "^2.0.7"
+  },
   "peerDependencies": {
-    "three": "^0.114.0"
+    "three": "^0.115.0"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.0.1",
@@ -39,7 +51,7 @@
     "rollup-plugin-serve": "^1.0.1",
     "rollup-plugin-terser": "^5.2.0",
     "rollup-plugin-ts": "^1.2.14",
-    "three": "^0.114.0",
+    "three": "^0.115.0",
     "ts-jest": "^25.2.1",
     "typescript": "3.8.3"
   }

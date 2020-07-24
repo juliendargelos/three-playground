@@ -22,12 +22,17 @@ const config = {
   input: 'src/index.ts',
   output: { sourcemap: true },
   plugins: [
-    build && autoExternal(),
     alias({
       resolve: ['.ts'],
-      entries: Object
-        .entries(tsconfig.compilerOptions.paths)
-        .map(([find, [replacement]]) => ({ find, replacement }))
+      entries: [
+        {
+          find: 'postprocessing',
+          replacement: 'postprocessing/build/postprocessing.esm.js'
+        },
+        ...Object
+          .entries(tsconfig.compilerOptions.paths)
+          .map(([find, [replacement]]) => ({ find, replacement }))
+      ]
     })
   ]
 }
@@ -41,9 +46,16 @@ export default [
     ],
     plugins: [
       ...config.plugins,
+      autoExternal(),
       eslint(),
       ts(),
       cleaner({ targets: [pkg.main.replace(/\/[^\/]+$/, '')] }),
+    ],
+    external: [
+      'three/examples/jsm/loaders/OBJLoader.js',
+      'three/examples/jsm/loaders/GLTFLoader.js',
+      'three/examples/jsm/loaders/FBXLoader.js',
+      'three/examples/jsm/loaders/DRACOLoader.js'
     ]
   },
 
@@ -55,12 +67,11 @@ export default [
       format: 'umd',
       name: 'THREE',
       globals: {
-        'three': 'THREE',
-        'three/examples/jsm/controls/OrbitControls': 'THREE'
+        'three': 'THREE'
       }
     },
-    externals: [
-      'three/examples/jsm/controls/OrbitControls'
+    external: [
+      'three'
     ],
     plugins: [
       ...config.plugins,
@@ -70,7 +81,7 @@ export default [
       }),
       nodeResolve({ extensions: ['.ts', '.js'] }),
       commonjs(),
-      // terser()
+      terser()
     ]
   },
 
