@@ -65,6 +65,7 @@ export default [
       ...config.output,
       file: pkg.browser,
       format: 'umd',
+      sourcemap: false,
       name: 'THREE',
       globals: {
         'three': 'THREE'
@@ -91,7 +92,8 @@ export default [
     output: {
       ...config.output,
       file: 'demo-dist/index.js',
-      format: 'iife'
+      format: 'iife',
+      sourcemap: false
     },
     plugins: [
       ...config.plugins,
