@@ -126,5 +126,6 @@ class Playground<PlaygroundCamera extends PerspectiveCamera | OrthographicCamera
     loadGLTF (src: string, onProgress?: (event: ProgressEvent) => void): Promise<GLTF>
     loadFBX (src: string, onProgress?: (event: ProgressEvent) => void): Promise<Group>
     loadDRACO (src: string, onProgress?: (event: ProgressEvent) => void): Promise<BufferGeometry>
+    loadFont (src: string, onProgress?: (event: ProgressEvent) => void): Promise<Font>
 }
 ```

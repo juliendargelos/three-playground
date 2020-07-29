@@ -9,6 +9,8 @@ import {
   BufferGeometry,
   Texture,
   TextureLoader,
+  Font,
+  FontLoader,
   Object3D,
   Group
 } from 'three'
@@ -94,6 +96,7 @@ export class Playground<Camera extends PlaygroundCamera = PerspectiveCamera>  {
   public readonly gltfLoader = new GLTFLoader()
   public readonly fbxLoader = new FBXLoader()
   public readonly dracoLoader = new DRACOLoader()
+  public readonly fontLoader = new FontLoader()
   public interval!: number
   public playing: boolean = false
   public elapsed: number = 0
@@ -264,6 +267,13 @@ export class Playground<Camera extends PlaygroundCamera = PerspectiveCamera>  {
     onProgress?: (event: ProgressEvent) => void
   ): Promise<BufferGeometry> {
     return asyncLoad(this.dracoLoader, src, onProgress)
+  }
+
+  public loadFont (
+    src: string,
+    onProgress?: (event: ProgressEvent) => void
+  ): Promise<Font> {
+    return asyncLoad(this.fontLoader, src, onProgress)
   }
 
   public resize(width: number, height: number): void {
