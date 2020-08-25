@@ -27,8 +27,8 @@ npm install three three-playground --save
 **Include from unpkg:**
 
 ```html
-<script src="https://unpkg.com/three"></script>
-<script src="https://unpkg.com/three-playground"></script>
+<script src="https://unpkg.com/three@0.115.0"></script>
+<script src="https://unpkg.com/three-playground@0.3.0"></script>
 
 <!-- The playground class is globally available as THREE.Playground !-->
 ```
